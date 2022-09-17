@@ -42,7 +42,9 @@ public class PersonCard extends UiPart<Region> {
     private Label remark;
     @FXML
     private FlowPane tags;
-
+    /**
+     * Constructor for PersonCard.
+     */
     public PersonCard(Person person, int displayedIndex) {
         super(FXML);
         this.person = person;
