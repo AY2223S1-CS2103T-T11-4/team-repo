@@ -17,6 +17,7 @@ public class Person {
 
     // Identity fields
     private final Name name;
+    private final Github github;
     private final Phone phone;
     private final Email email;
 
@@ -25,11 +26,12 @@ public class Person {
     private final Set<Tag> tags = new HashSet<>();
 
     /**
-     * Every field must be present and not null.
+     * Only name and github must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Github github, Phone phone, Email email, Address address, Set<Tag> tags) {
+        requireAllNonNull(name, github);
         this.name = name;
+        this.github = github;
         this.phone = phone;
         this.email = email;
         this.address = address;
@@ -50,6 +52,10 @@ public class Person {
 
     public Address getAddress() {
         return address;
+    }
+
+    public Github getGithub() {
+        return this.github;
     }
 
     /**
@@ -78,6 +84,7 @@ public class Person {
      * This defines a stronger notion of equality between two persons.
      */
     @Override
+    // TODO: Update to include github field
     public boolean equals(Object other) {
         if (other == this) {
             return true;
@@ -96,12 +103,14 @@ public class Person {
     }
 
     @Override
+    // TODO: Update to include github field
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(name, phone, email, address, tags);
     }
 
     @Override
+    // TODO: Update to include github field
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())

@@ -21,6 +21,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Github;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -94,12 +95,13 @@ public class EditCommand extends Command {
         assert personToEdit != null;
 
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
+        Github updatedGithub = editPersonDescriptor.getGithub().orElse(personToEdit.getGithub());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Person(updatedName, updatedGithub, updatedPhone, updatedEmail, updatedAddress, updatedTags);
     }
 
     @Override
@@ -126,6 +128,7 @@ public class EditCommand extends Command {
      */
     public static class EditPersonDescriptor {
         private Name name;
+        private Github github;
         private Phone phone;
         private Email email;
         private Address address;
@@ -158,6 +161,14 @@ public class EditCommand extends Command {
 
         public Optional<Name> getName() {
             return Optional.ofNullable(name);
+        }
+
+        public void setGithub(Github github) {
+            this.github = github;
+        }
+
+        public Optional<Github> getGithub() {
+            return Optional.ofNullable(github);
         }
 
         public void setPhone(Phone phone) {
@@ -217,6 +228,7 @@ public class EditCommand extends Command {
             EditPersonDescriptor e = (EditPersonDescriptor) other;
 
             return getName().equals(e.getName())
+                    && getGithub().equals(e.getGithub())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
