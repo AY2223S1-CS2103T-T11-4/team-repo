@@ -55,17 +55,17 @@ public class PersonCard extends UiPart<Region> {
         if (person.getPhone() != null) {
             phone.setText("HP: " + person.getPhone().value);
         } else {
-            phone.setManaged(false);
+            phone.setText("");
         }
         if (person.getEmail() != null) {
             email.setText("Email: " + person.getEmail().value);
         } else {
-            email.setManaged(false);
+            email.setText("");
         }
         if (person.getGitHub() != null) {
             github.setText("GitHub: " + person.getGitHub().username);
         } else {
-            github.setManaged(false);
+            github.setText("");
         }
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))

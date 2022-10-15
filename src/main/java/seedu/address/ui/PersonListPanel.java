@@ -16,7 +16,6 @@ import seedu.address.model.person.Person;
 public class PersonListPanel extends UiPart<Region> {
     private static final String FXML = "PersonListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);
-    private ModListPanel modListPanel;
 
     @FXML
     private ListView<Person> personListView;
@@ -24,23 +23,10 @@ public class PersonListPanel extends UiPart<Region> {
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
-    public PersonListPanel(ObservableList<Person> personList, ModListPanel personModList) {
+    public PersonListPanel(ObservableList<Person> personList) {
         super(FXML);
         personListView.setItems(personList);
         personListView.setCellFactory(listView -> new PersonListViewCell());
-        this.modListPanel = personModList;
-    }
-
-    /**
-     * Displays ListView item clicked on the ListView on the {@code testPanel}
-     */
-    public void handlePersonClick() {
-        personListView.setOnMouseClicked(event -> {
-            Person person = personListView.getSelectionModel().getSelectedItem();
-            if (person != null) {
-                modListPanel.setPersonModList(person);
-            }
-        });
     }
 
     /**

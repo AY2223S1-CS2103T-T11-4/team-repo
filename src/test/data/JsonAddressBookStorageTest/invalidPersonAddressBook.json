@@ -3,11 +3,6 @@
     "name": "Person with invalid name field: Ha!ns Mu@ster",
     "phone": "9482424",
     "email": "hans@example.com",
-    "mods" : [ {
-      "modName" : "CS2100",
-      "hasTaken" : false
-    } ],
-    "handle": "invalid",
-    "username": "valid"
+    "address": "4th street"
   } ]
 }
